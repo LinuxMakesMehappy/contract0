@@ -160,7 +160,7 @@ scripts/README.md              ✅ Complete (3,000+ words)
 ### 3. Flexible Duration System
 - ✅ **1-Day Default**: Simplest possible staking
 - ✅ **Custom Durations**: 1-3650 days range
-- ✅ **Duration Bonuses**: Up to 2x multiplier for longer commitments
+
 - ✅ **Early Exit Penalties**: Total commitment rewards as penalty
 
 ### 4. Maximum Leverage System

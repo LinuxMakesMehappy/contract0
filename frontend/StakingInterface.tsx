@@ -353,12 +353,7 @@ export const StakingInterface: React.FC<StakingInterfaceProps> = ({
                     {userAccount ? `${getTierMultiplier(userAccount.tier) - 100}%` : '0%'}
                   </span>
                 </div>
-                <div>
-                  <span className="text-gray-600">Duration Bonus:</span>
-                  <span className="ml-2 font-semibold">
-                    {Math.min(selectedDuration / 30, 2) * 100}%
-                  </span>
-                </div>
+
                 {enableMultiply && (
                   <div>
                     <span className="text-gray-600">Kamino Multiply:</span>
@@ -369,7 +364,7 @@ export const StakingInterface: React.FC<StakingInterfaceProps> = ({
                   <span className="text-gray-600">Total APY:</span>
                   <span className="ml-2 font-semibold text-green-600">
                     {userAccount ? 
-                      `${(17 * (getTierMultiplier(userAccount.tier) / 100) * Math.min(selectedDuration / 30, 2) * (enableMultiply ? 4 : 1)).toFixed(1)}%` : 
+                      `${(17 * (getTierMultiplier(userAccount.tier) / 100) * (enableMultiply ? 4 : 1)).toFixed(1)}%` : 
                       '17%'}
                   </span>
                 </div>

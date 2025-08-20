@@ -64,16 +64,13 @@ Tier Multipliers:
 - Silver: 1.0x (17% APY)
 - Bronze: 0.75x (12.75% APY)
 
-Duration Bonus:
-- 1-30 days: 1.0x
-- 31-60 days: 1.5x
-- 61+ days: 2.0x
+
 
 Kamino Multiply:
 - Enabled: 4.0x
 - Disabled: 1.0x
 
-Final APY = Base APY × Tier Multiplier × Duration Bonus × Kamino Multiply
+Final APY = Base APY × Tier Multiplier × Kamino Multiply
 ```
 
 #### Mathematical Expression
@@ -303,9 +300,9 @@ Variable_Cost_Rate_per_SOL = Average variable cost per SOL staked
 
 #### Long-term Staking Incentives
 ```
-Long_term_bonus = Duration_Multiplier × Tier_Multiplier × Kamino_Multiplier
+Total_APY = Base_APY × Tier_Multiplier × Kamino_Multiplier
 
-Duration_Multiplier = min(days / 30, 2.0)
+
 Tier_Multiplier = {1.5, 1.25, 1.0, 0.75}
 Kamino_Multiplier = {4.0, 1.0}
 ```

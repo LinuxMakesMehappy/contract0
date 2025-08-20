@@ -105,7 +105,7 @@ ts-node stake-cli.ts stake 10 30 Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS --
 ### **Base APY Structure**
 - **Base Rate**: 17% APY
 - **Tier Multipliers**: Diamond (1.5x), Gold (1.25x), Silver (1.0x), Bronze (0.75x)
-- **Duration Bonus**: Up to 2x for longer commitments
+
 - **Kamino Multiply**: Up to 4x leverage
 
 ### **Example Calculations**
@@ -139,10 +139,10 @@ User Receives: 10 SOL - 0.21 SOL = 9.79 SOL
 Stake: 10 SOL for 90 days
 Base APY: 17%
 Tier: Gold (1.25x)
-Duration Bonus: 2x (90 days > 60 days)
-Total Commitment Rewards: 10 × 17% × 1.25 × 2 × 90/365 = 1.05 SOL
-Penalty: 1.05 SOL (full commitment rewards)
-User Receives: 10 SOL - 1.05 SOL = 8.95 SOL
+
+Total Commitment Rewards: 10 × 17% × 1.25 × 90/365 = 0.525 SOL
+Penalty: 0.525 SOL (full commitment rewards)
+User Receives: 10 SOL - 0.525 SOL = 9.475 SOL
 ```
 
 ## 🔧 Technical Benefits

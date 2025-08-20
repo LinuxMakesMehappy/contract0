@@ -407,10 +407,9 @@ interface StakingInterfaceProps {
 const calculateAPY = (userTier: UserTier, duration: number, enableMultiply: boolean) => {
   const baseAPY = 17;
   const tierMultiplier = getTierMultiplier(userTier);
-  const durationBonus = Math.min(duration / 30, 2);
   const multiplyBonus = enableMultiply ? 4 : 1;
-  
-  return baseAPY * (tierMultiplier / 100) * durationBonus * multiplyBonus;
+
+return baseAPY * (tierMultiplier / 100) * multiplyBonus;
 };
 ```
 
