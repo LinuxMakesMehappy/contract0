@@ -1160,18 +1160,14 @@ impl kamino_lending {
             let available_sol = user_account.jupsol_amount;
             
             // Step 3: Calculate what user should receive
-            // User gets: Initial capital - (yield + staking rewards)
+            // User gets: Initial capital - 1% penalty
             let penalty = Self::calculate_early_exit_penalty(user_account)?;
             
-            // Withdrawal amount = Initial capital - Penalty (yield + staking rewards)
+            // Withdrawal amount = Initial capital - 1% penalty
             let withdrawal_amount = user_account.stake_amount.checked_sub(penalty).unwrap();
             
-            // Ensure user never gets negative amount (safety check)
-            let final_withdrawal = if withdrawal_amount > user_account.stake_amount {
-                user_account.stake_amount // User gets their initial capital back
-            } else {
-                withdrawal_amount
-            };
+            // User gets 99% of their initial stake back
+            let final_withdrawal = withdrawal_amount;
             
             let transfer_ctx = CpiContext::new(
                 ctx.accounts.system_program.to_account_info(),
@@ -1192,7 +1188,7 @@ impl kamino_lending {
             );
             anchor_lang::system_program::transfer(penalty_ctx, penalty)?;
             
-            msg!("Early exit penalty applied: {} SOL (yield + staking rewards deducted from initial capital)", penalty);
+            msg!("Early exit penalty applied: {} SOL (1% of initial stake feeds perpetual account)", penalty);
         } else {
             // Full withdrawal without penalty - immediate liquidity
             // Step 1: Unwind Kamino multiply position (if exists)
@@ -1238,28 +1234,10 @@ impl kamino_lending {
         Ok(())
     }
 
-    /// Calculate early exit penalty (deduct yield + staking rewards from initial capital)
+    /// Calculate early exit penalty (simple 1% of initial stake)
     fn calculate_early_exit_penalty(user_account: &UserAccount) -> Result<u64> {
-        let current_time = Clock::get()?.unix_timestamp;
-        let time_elapsed = current_time.checked_sub(user_account.stake_start_time).unwrap();
-        
-        // Calculate staking rewards (yield from staking)
-        let staking_rewards = Self::calculate_realized_rewards(user_account)?;
-        
-        // Calculate Kamino multiply yields (if enabled)
-        let kamino_yields = if user_account.kamino_multiply_position.is_some() {
-            // Kamino multiply provides additional yields (simplified calculation)
-            staking_rewards.checked_mul(3).unwrap() // 3x additional yield from multiply
-        } else {
-            0
-        };
-        
-        // Total yield + staking rewards = staking rewards + Kamino yields
-        let total_yield_and_rewards = staking_rewards.checked_add(kamino_yields).unwrap();
-        
-        // Early exit penalty = yield + staking rewards (deducted from initial capital)
-        let penalty = total_yield_and_rewards;
-        
+        // Fixed 1% penalty of initial stake for early exit
+        let penalty = user_account.stake_amount.checked_mul(1).unwrap().checked_div(100).unwrap();
         Ok(penalty)
     }
 

@@ -234,7 +234,7 @@ fn calculate_early_exit_penalty(user_account: &UserAccount) -> Result<u64> {
     // Calculate total rewards for the full commitment period
     let total_commitment_rewards = Self::calculate_total_commitment_rewards(user_account)?;
     
-    // Early exit penalty = Total commitment rewards
+    // Early exit penalty = 1% of initial stake
     // This ensures users pay the full cost of breaking their commitment
     Ok(total_commitment_rewards)
 }

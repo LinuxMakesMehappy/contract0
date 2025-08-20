@@ -129,9 +129,9 @@ APY = 17% × 1.5 × 1.0 × 4 = 102%
 Stake: 10 SOL for 30 days
 Base APY: 17%
 Tier: Diamond (1.5x)
-Total Commitment Rewards: 10 × 17% × 1.5 × 30/365 = 0.21 SOL
-Penalty: 0.21 SOL (full commitment rewards)
-User Receives: 10 SOL - 0.21 SOL = 9.79 SOL
+Initial Stake: 10 SOL
+Penalty: 0.1 SOL (1% of initial stake)
+User Receives: 10 SOL - 0.1 SOL = 9.9 SOL
 ```
 
 ### **Example 2: 90-Day Commitment, Exit After 30 Days**
@@ -140,9 +140,9 @@ Stake: 10 SOL for 90 days
 Base APY: 17%
 Tier: Gold (1.25x)
 
-Total Commitment Rewards: 10 × 17% × 1.25 × 90/365 = 0.525 SOL
-Penalty: 0.525 SOL (full commitment rewards)
-User Receives: 10 SOL - 0.525 SOL = 9.475 SOL
+Initial Stake: 10 SOL
+Penalty: 0.1 SOL (1% of initial stake)
+User Receives: 10 SOL - 0.1 SOL = 9.9 SOL
 ```
 
 ## 🔧 Technical Benefits

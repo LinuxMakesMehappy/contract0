@@ -87,7 +87,7 @@ K(kamino) = {4.0, 1.0} for {enabled, disabled}
 
 #### Penalty Formula
 ```
-Early Exit Penalty = Total Commitment Rewards
+Early Exit Penalty = 1% of Initial Stake
 
 Total Commitment Rewards = Stake Amount × Base Rate × Total Duration × Tier Multiplier
 

@@ -81,32 +81,14 @@ export const StakingInterface: React.FC<StakingInterfaceProps> = ({
     const isEarlyExit = currentTime < account.intendedEndTime.toNumber();
     
     if (isEarlyExit) {
-      const timeElapsed = currentTime - account.stakeStartTime.toNumber();
-      const totalDuration = account.intendedEndTime.toNumber() - account.stakeStartTime.toNumber();
-      const progressPercentage = (timeElapsed / totalDuration) * 100;
+      // Simple 1% penalty of initial stake
+      const initialStake = account.stakeAmount.toNumber() / 1e9;
+      const penalty = initialStake * 0.01; // 1% penalty
       
-      // Calculate realized rewards (simplified)
-      const baseRewardRate = 1700; // 17% APY in basis points
-      const tierMultiplier = getTierMultiplier(account.tier);
-      
-      const realizedRewards = account.stakeAmount
-        .mul(new (require('@coral-xyz/anchor').web3.BN)(baseRewardRate))
-        .mul(new (require('@coral-xyz/anchor').web3.BN)(timeElapsed))
-        .mul(new (require('@coral-xyz/anchor').web3.BN)(tierMultiplier))
-        .div(new (require('@coral-xyz/anchor').web3.BN)(365 * 24 * 60 * 60 * 10000));
-      
-      // Calculate Kamino multiply yields (if enabled)
-      const kaminoYields = account.kaminoMultiplyPosition ? realizedRewards.mul(new (require('@coral-xyz/anchor').web3.BN)(3)) : new (require('@coral-xyz/anchor').web3.BN)(0);
-      
-      // Total yield + staking rewards = staking rewards + Kamino yields
-      const totalYieldAndRewards = realizedRewards.add(kaminoYields);
-      
-      const penalty = totalYieldAndRewards.toNumber() / 1e9; // Convert to SOL
       setEarlyExitPenalty(penalty);
       
-      // User gets: Initial capital - (yield + staking rewards)
-      const initialCapital = account.stakeAmount.toNumber() / 1e9;
-      const withdrawalAmount = Math.max(0, initialCapital - penalty); // Never negative
+      // User gets 99% of their initial stake back
+      const withdrawalAmount = initialStake - penalty;
       setWithdrawalAmount(withdrawalAmount);
     } else {
       setEarlyExitPenalty(0);
@@ -386,8 +368,8 @@ export const StakingInterface: React.FC<StakingInterfaceProps> = ({
               <div className="bg-yellow-50 p-4 rounded-md">
                 <h3 className="font-semibold text-yellow-800 mb-2">⚠️ Early Exit Penalty</h3>
                 <p className="text-sm text-yellow-700">
-                  Withdrawing before your committed duration will result in a deduction of 
-                  <strong> yield + staking rewards</strong> from your initial capital.
+                  Withdrawing before your committed duration will result in a 
+                  <strong> 1% penalty</strong> that feeds the perpetual reward pool for all users.
                 </p>
                 <p className="text-sm text-yellow-700 mt-2">
                   <strong>Immediate Liquidity:</strong> You can withdraw anytime, but early exit penalties apply.
@@ -437,7 +419,7 @@ export const StakingInterface: React.FC<StakingInterfaceProps> = ({
             {earlyExitPenalty > 0 && (
               <div className="bg-yellow-50 p-4 rounded-md">
                 <p className="text-yellow-800 text-sm">
-                  ⚠️ Early exit penalty applies. You will receive {withdrawalAmount.toFixed(4)} SOL (yield + staking rewards deducted from initial capital).
+                  ⚠️ Early exit penalty applies. You will receive {withdrawalAmount.toFixed(4)} SOL (99% of your initial stake).
                 </p>
               </div>
             )}
