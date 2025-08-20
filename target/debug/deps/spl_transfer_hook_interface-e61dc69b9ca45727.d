@@ -1,0 +1,9 @@
+D:\Kiro\contract0\target\debug\deps\spl_transfer_hook_interface-e61dc69b9ca45727.d: C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\spl-transfer-hook-interface-0.3.0\src\lib.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\spl-transfer-hook-interface-0.3.0\src\error.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\spl-transfer-hook-interface-0.3.0\src\instruction.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\spl-transfer-hook-interface-0.3.0\src\offchain.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\spl-transfer-hook-interface-0.3.0\src\onchain.rs
+
+D:\Kiro\contract0\target\debug\deps\libspl_transfer_hook_interface-e61dc69b9ca45727.rmeta: C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\spl-transfer-hook-interface-0.3.0\src\lib.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\spl-transfer-hook-interface-0.3.0\src\error.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\spl-transfer-hook-interface-0.3.0\src\instruction.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\spl-transfer-hook-interface-0.3.0\src\offchain.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\spl-transfer-hook-interface-0.3.0\src\onchain.rs
+
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\spl-transfer-hook-interface-0.3.0\src\lib.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\spl-transfer-hook-interface-0.3.0\src\error.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\spl-transfer-hook-interface-0.3.0\src\instruction.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\spl-transfer-hook-interface-0.3.0\src\offchain.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\spl-transfer-hook-interface-0.3.0\src\onchain.rs:

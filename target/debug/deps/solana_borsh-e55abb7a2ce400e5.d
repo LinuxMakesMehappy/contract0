@@ -1,0 +1,11 @@
+D:\Kiro\contract0\target\debug\deps\solana_borsh-e55abb7a2ce400e5.d: C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\lib.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\deprecated.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\macros.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\v0_10.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\v1.rs
+
+D:\Kiro\contract0\target\debug\deps\libsolana_borsh-e55abb7a2ce400e5.rlib: C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\lib.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\deprecated.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\macros.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\v0_10.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\v1.rs
+
+D:\Kiro\contract0\target\debug\deps\libsolana_borsh-e55abb7a2ce400e5.rmeta: C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\lib.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\deprecated.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\macros.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\v0_10.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\v1.rs
+
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\lib.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\deprecated.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\macros.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\v0_10.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\solana-borsh-2.2.1\src\v1.rs:

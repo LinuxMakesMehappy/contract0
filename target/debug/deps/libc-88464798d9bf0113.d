@@ -1,0 +1,12 @@
+D:\Kiro\contract0\target\debug\deps\libc-88464798d9bf0113.d: C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\lib.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\macros.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\new\mod.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\primitives.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\windows\mod.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\windows\msvc\mod.rs
+
+D:\Kiro\contract0\target\debug\deps\liblibc-88464798d9bf0113.rlib: C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\lib.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\macros.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\new\mod.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\primitives.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\windows\mod.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\windows\msvc\mod.rs
+
+D:\Kiro\contract0\target\debug\deps\liblibc-88464798d9bf0113.rmeta: C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\lib.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\macros.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\new\mod.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\primitives.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\windows\mod.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\windows\msvc\mod.rs
+
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\lib.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\macros.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\new\mod.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\primitives.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\windows\mod.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libc-0.2.175\src\windows\msvc\mod.rs:

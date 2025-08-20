@@ -1,0 +1,9 @@
+D:\Kiro\contract0\target\debug\deps\thiserror-0296c84a67fd1741.d: C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-1.0.69\src\lib.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-1.0.69\src\aserror.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-1.0.69\src\display.rs
+
+D:\Kiro\contract0\target\debug\deps\libthiserror-0296c84a67fd1741.rlib: C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-1.0.69\src\lib.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-1.0.69\src\aserror.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-1.0.69\src\display.rs
+
+D:\Kiro\contract0\target\debug\deps\libthiserror-0296c84a67fd1741.rmeta: C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-1.0.69\src\lib.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-1.0.69\src\aserror.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-1.0.69\src\display.rs
+
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-1.0.69\src\lib.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-1.0.69\src\aserror.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-1.0.69\src\display.rs:

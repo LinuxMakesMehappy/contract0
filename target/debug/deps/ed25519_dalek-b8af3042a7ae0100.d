@@ -1,0 +1,11 @@
+D:\Kiro\contract0\target\debug\deps\ed25519_dalek-b8af3042a7ae0100.d: C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\lib.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\constants.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\keypair.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\errors.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\public.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\secret.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\signature.rs
+
+D:\Kiro\contract0\target\debug\deps\libed25519_dalek-b8af3042a7ae0100.rmeta: C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\lib.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\constants.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\keypair.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\errors.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\public.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\secret.rs C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\signature.rs
+
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\lib.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\constants.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\keypair.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\errors.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\public.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\secret.rs:
+C:\Users\twizt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ed25519-dalek-1.0.1\src\signature.rs:

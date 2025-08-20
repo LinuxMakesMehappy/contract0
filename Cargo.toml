@@ -14,9 +14,7 @@ cpi = ["no-entrypoint"]
 default = []
 
 [dependencies]
-anchor-lang = "0.29.0"
-anchor-spl = "0.29.0"
-solana-program = "~1.17.0"
-spl-token = { version = "4.0.0", features = ["no-entrypoint"] }
-spl-associated-token-account = { version = "4.0.0", features = ["no-entrypoint"] }
+anchor-lang = "0.28.0"
+anchor-spl = "0.28.0"
+solana-program = "~1.16.0"
 spl-math = "0.3.0"
