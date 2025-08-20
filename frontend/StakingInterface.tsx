@@ -98,14 +98,16 @@ export const StakingInterface: React.FC<StakingInterfaceProps> = ({
       // Calculate Kamino multiply yields (if enabled)
       const kaminoYields = account.kaminoMultiplyPosition ? realizedRewards.mul(new (require('@coral-xyz/anchor').web3.BN)(3)) : new (require('@coral-xyz/anchor').web3.BN)(0);
       
-      // Total rewards earned = realized rewards + Kamino yields
-      const totalRewardsEarned = realizedRewards.add(kaminoYields);
+      // Total yield + staking rewards = staking rewards + Kamino yields
+      const totalYieldAndRewards = realizedRewards.add(kaminoYields);
       
-      const penalty = totalRewardsEarned.toNumber() / 1e9; // Convert to SOL
+      const penalty = totalYieldAndRewards.toNumber() / 1e9; // Convert to SOL
       setEarlyExitPenalty(penalty);
       
-      // User gets initial capital back (all rewards deducted)
-      setWithdrawalAmount(account.stakeAmount.toNumber() / 1e9);
+      // User gets: Initial capital - (yield + staking rewards)
+      const initialCapital = account.stakeAmount.toNumber() / 1e9;
+      const withdrawalAmount = Math.max(0, initialCapital - penalty); // Never negative
+      setWithdrawalAmount(withdrawalAmount);
     } else {
       setEarlyExitPenalty(0);
       setWithdrawalAmount(account.stakeAmount.toNumber() / 1e9);
@@ -384,8 +386,8 @@ export const StakingInterface: React.FC<StakingInterfaceProps> = ({
               <div className="bg-yellow-50 p-4 rounded-md">
                 <h3 className="font-semibold text-yellow-800 mb-2">⚠️ Early Exit Penalty</h3>
                 <p className="text-sm text-yellow-700">
-                  Withdrawing before your committed duration will result in losing 
-                  <strong> ALL rewards earned</strong> - you will receive only your initial capital back.
+                  Withdrawing before your committed duration will result in a deduction of 
+                  <strong> yield + staking rewards</strong> from your initial capital.
                 </p>
                 <p className="text-sm text-yellow-700 mt-2">
                   <strong>Immediate Liquidity:</strong> You can withdraw anytime, but early exit penalties apply.
@@ -435,7 +437,7 @@ export const StakingInterface: React.FC<StakingInterfaceProps> = ({
             {earlyExitPenalty > 0 && (
               <div className="bg-yellow-50 p-4 rounded-md">
                 <p className="text-yellow-800 text-sm">
-                  ⚠️ Early exit penalty applies. You will receive your initial capital back ({withdrawalAmount.toFixed(4)} SOL) but lose all rewards earned.
+                  ⚠️ Early exit penalty applies. You will receive {withdrawalAmount.toFixed(4)} SOL (yield + staking rewards deducted from initial capital).
                 </p>
               </div>
             )}
