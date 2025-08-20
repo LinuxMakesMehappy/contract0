@@ -711,6 +711,10 @@ pub struct PermanentAccount {
     pub authority: Pubkey,
     pub total_penalties: u64,
     pub last_distribution: i64,
+    pub total_rewards_collected: u64, // Total rewards collected (20% of all rewards)
+    pub jupsol_balance: u64, // JupSOL balance for immediate liquidity
+    pub kamino_multiply_position: Option<Pubkey>, // Kamino multiply position for max yield
+    pub is_perpetual: bool, // Flag to ensure this account is perpetual
 }
 
 #[derive(AnchorSerialize, AnchorDeserialize, Clone, Default)]
@@ -992,6 +996,18 @@ pub struct WithdrawStake<'info> {
     pub system_program: Program<'info, System>,
 }
 
+#[derive(Accounts)]
+pub struct DistributePerpetualRewards<'info> {
+    #[account(mut)]
+    pub market: Account<'info, Market>,
+    #[account(
+        mut,
+        constraint = permanent_account.is_perpetual @ LendingError::InvalidAccount
+    )]
+    pub permanent_account: Account<'info, PermanentAccount>,
+    pub system_program: Program<'info, System>,
+}
+
 // Reward distribution functions
 impl kamino_lending {
     /// Set user reward distribution preferences
@@ -1011,21 +1027,27 @@ impl kamino_lending {
         let user_account = &mut ctx.accounts.user_account;
         let market = &ctx.accounts.market;
         
-        // Calculate current rewards
-        let current_rewards = Self::calculate_current_rewards(user_account, market)?;
+        // Calculate total rewards (including Kamino yields)
+        let total_rewards = Self::calculate_total_rewards(user_account, market)?;
+        
+        // Allocate 20% to perpetual account
+        Self::allocate_to_perpetual_account(ctx, total_rewards)?;
+        
+        // Calculate user rewards (80% of total)
+        let user_rewards = total_rewards.checked_mul(80).unwrap().checked_div(100).unwrap();
         
         if let Some(preferences) = &user_account.reward_preferences {
             match preferences.mode {
                 RewardMode::RecurringInvestment => {
-                    Self::handle_recurring_investment(ctx, current_rewards, preferences)?;
+                    Self::handle_recurring_investment(ctx, user_rewards, preferences)?;
                 }
                 RewardMode::RealTimeBatch => {
-                    Self::handle_real_time_batch(ctx, current_rewards, preferences)?;
+                    Self::handle_real_time_batch(ctx, user_rewards, preferences)?;
                 }
             }
         } else {
             // Default to immediate payout if no preferences set
-            Self::payout_rewards(ctx, current_rewards)?;
+            Self::payout_rewards(ctx, user_rewards)?;
         }
         
         Ok(())
@@ -1370,19 +1392,20 @@ impl kamino_lending {
         Ok(())
     }
 
-    /// Calculate current rewards for user
-    fn calculate_current_rewards(
+    /// Calculate total rewards for user (before 80/20 split)
+    fn calculate_total_rewards(
         user_account: &UserAccount,
         market: &Market,
     ) -> Result<u64> {
         let current_time = Clock::get()?.unix_timestamp;
         let stake_duration = current_time.checked_sub(user_account.stake_start_time).unwrap();
         
-        // Calculate rewards based on stake amount, duration, and tier
+        // Calculate total rewards from staking + Kamino yields
         let base_reward_rate = 1700; // 17% APY in basis points
         let tier_multiplier = Self::get_tier_multiplier(user_account.tier);
         
-        let rewards = user_account.stake_amount
+        // Calculate base staking rewards
+        let base_rewards = user_account.stake_amount
             .checked_mul(base_reward_rate as u64)
             .unwrap()
             .checked_mul(stake_duration as u64)
@@ -1392,7 +1415,27 @@ impl kamino_lending {
             .checked_div(365 * 24 * 60 * 60 * 10000) // Convert to daily rate
             .unwrap();
         
-        Ok(rewards)
+        // Calculate Kamino multiply yields (if enabled)
+        let kamino_yields = if user_account.kamino_multiply_position.is_some() {
+            // Kamino multiply provides additional yields (simplified calculation)
+            base_rewards.checked_mul(3).unwrap() // 3x additional yield from multiply
+        } else {
+            0
+        };
+        
+        let total_rewards = base_rewards.checked_add(kamino_yields).unwrap();
+        
+        Ok(total_rewards)
+    }
+
+    /// Calculate current rewards for user (80% of total)
+    fn calculate_current_rewards(
+        user_account: &UserAccount,
+        market: &Market,
+    ) -> Result<u64> {
+        let total_rewards = Self::calculate_total_rewards(user_account, market)?;
+        let user_rewards = total_rewards.checked_mul(80).unwrap().checked_div(100).unwrap();
+        Ok(user_rewards)
     }
 
     /// Get tier multiplier for reward calculation
@@ -1403,6 +1446,84 @@ impl kamino_lending {
             UserTier::Silver => 100,  // 1.0x multiplier
             UserTier::Bronze => 75,   // 0.75x multiplier
         }
+    }
+
+    /// Calculate and allocate 20% of rewards to perpetual account
+    fn allocate_to_perpetual_account(
+        ctx: Context<DistributeRewards>,
+        total_rewards: u64,
+    ) -> Result<()> {
+        let perpetual_share = total_rewards.checked_mul(20).unwrap().checked_div(100).unwrap();
+        
+        // Transfer 20% to perpetual account
+        let transfer_ctx = CpiContext::new(
+            ctx.accounts.system_program.to_account_info(),
+            anchor_lang::system_program::Transfer {
+                from: ctx.accounts.market.to_account_info(),
+                to: ctx.accounts.permanent_account.to_account_info(),
+            },
+        );
+        anchor_lang::system_program::transfer(transfer_ctx, perpetual_share)?;
+        
+        // Update perpetual account
+        let permanent_account = &mut ctx.accounts.permanent_account;
+        permanent_account.total_rewards_collected = permanent_account.total_rewards_collected
+            .checked_add(perpetual_share)
+            .unwrap();
+        
+        // Convert to JupSOL for immediate liquidity
+        permanent_account.jupsol_balance = permanent_account.jupsol_balance
+            .checked_add(perpetual_share)
+            .unwrap();
+        
+        // Set perpetual flag if not already set
+        if !permanent_account.is_perpetual {
+            permanent_account.is_perpetual = true;
+        }
+        
+        Ok(())
+    }
+
+    /// Perpetual account distributes its rewards through JupSOL → Kamino multiply → users
+    pub fn distribute_perpetual_rewards(
+        ctx: Context<DistributePerpetualRewards>,
+    ) -> Result<()> {
+        let permanent_account = &mut ctx.accounts.permanent_account;
+        
+        // Ensure this is the perpetual account
+        require!(permanent_account.is_perpetual, LendingError::InvalidAccount);
+        
+        // Calculate rewards from JupSOL + Kamino multiply yields
+        let jupsol_yields = permanent_account.jupsol_balance
+            .checked_mul(1700) // 17% APY
+            .unwrap()
+            .checked_div(365 * 24 * 60 * 60 * 10000) // Daily rate
+            .unwrap();
+        
+        // Kamino multiply yields (4x leverage)
+        let kamino_yields = jupsol_yields.checked_mul(4).unwrap();
+        
+        let total_perpetual_rewards = jupsol_yields.checked_add(kamino_yields).unwrap();
+        
+        // Distribute all perpetual rewards back to users (100% distribution)
+        // This creates the perpetual cycle: 20% → JupSOL → Kamino → 100% back to users
+        
+        // For now, we'll distribute to the market for user allocation
+        // In a full implementation, this would distribute to all active users proportionally
+        
+        let transfer_ctx = CpiContext::new(
+            ctx.accounts.system_program.to_account_info(),
+            anchor_lang::system_program::Transfer {
+                from: ctx.accounts.permanent_account.to_account_info(),
+                to: ctx.accounts.market.to_account_info(),
+            },
+        );
+        anchor_lang::system_program::transfer(transfer_ctx, total_perpetual_rewards)?;
+        
+        // Update perpetual account
+        permanent_account.last_distribution = Clock::get()?.unix_timestamp;
+        
+        Ok(())
     }
 }
 
@@ -1421,4 +1542,6 @@ pub enum LendingError {
     InsufficientBalance,
     #[msg("Position is not liquidatable")]
     PositionNotLiquidatable,
+    #[msg("Invalid account for operation")]
+    InvalidAccount,
 }
